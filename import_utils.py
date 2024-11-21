@@ -8,7 +8,7 @@ from tqdm.asyncio import tqdm as atqdm
 
 
 def parse_import(filename, ver='_1'):
-    with open('data.json') as f:
+    with open(filename) as f:
         data = json.load(f)
     assert len(set(data['relationsById'].keys()).union(data['nodesById'].keys())) == len(data['relationsById']) + len(data['nodesById'])
     connections = []
