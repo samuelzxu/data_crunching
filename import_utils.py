@@ -1,7 +1,7 @@
 import json
 import requests
 from tqdm import tqdm
-
+from datetime import datetime
 import asyncio
 import aiohttp
 from tqdm.asyncio import tqdm as atqdm
@@ -52,7 +52,7 @@ headers = {
 def import_data(nodes, connections):
     chunk_size = 300
     url = "https://v2.ideapad.io/api/v1/boards/createIdeasAndConnections"
-
+    now = datetime.now().isoformat()
     indices = list(range(0, len(nodes), chunk_size))
     # Do nodes first, then connections
     for i in tqdm(indices):
@@ -72,8 +72,8 @@ def import_data(nodes, connections):
             "status": "not-acknowledged",
             "attachedBoardClientId": None,
             "permissionsExplicitlySet": False,
-            "createdAt": "2024-11-21T16:35:04.434Z",
-            "updatedAt": "2024-11-21T16:35:04.434Z"
+            "createdAt": now,
+            "updatedAt": now
             }
             for n in nodes[i:i+chunk_size]
         ],
